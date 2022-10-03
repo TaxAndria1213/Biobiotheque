@@ -3,11 +3,9 @@ package Vue;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 
 public class FenetrePrincipale {
 	private JFrame framePpl;
-	// JPanel contenu = new JPanel();
 	JMenuBar barre_de_menu = new JMenuBar();
 	JMenu User_menu = new JMenu("Utilisateur");
 	JMenu Livre_menu = new JMenu("Livres");
