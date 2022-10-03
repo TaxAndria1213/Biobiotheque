@@ -6,13 +6,21 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
+	
+
 
 public class FenetrePrincipale {
 	private JFrame framePpl;
 	private JLabel label_emprunt_utilisateur;
 	private JLabel label_livre_dispo;
 	private JLabel label_tout_emprunts;
+	JMenuBar barre_de_menu = new JMenuBar();
+	JMenu User_menu = new JMenu("Utilisateur");
+	JMenu Livre_menu = new JMenu("Livres");
 	
 	
 	public FenetrePrincipale() {
@@ -22,12 +30,16 @@ public class FenetrePrincipale {
 	    
 	    
 		framePpl = new JFrame();
+
+		barre_de_menu.add(User_menu);
+		barre_de_menu.add(Livre_menu);
+
 		
 		JPanel paneau_principal = new JPanel();
 		JPanel conteneur = new JPanel();
 		
 		paneau_principal.setLayout(new BorderLayout());
-		
+		paneau_principal.add(barre_de_menu, BorderLayout.NORTH);
 		conteneur.setLayout(new GridLayout(1,3));
 		
 		JPanel pane_emprunt_utilisateur = new JPanel();
