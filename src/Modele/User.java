@@ -14,12 +14,20 @@ public class User {
 		this.mot_de_passe = mdp+"\n";
 	}
 	
-	private String getNom() {
+	public String getNom() {
 		return this.nom;
 	}
 	
 	private String getMotDePass() {
 		return this.mot_de_passe;
+	}
+	
+	public void setNom(String nom) {
+	    this.nom = nom;
+	}
+	
+	public void setMotDePass(String mdp) {
+	    this.mot_de_passe = mdp;
 	}
 	
 	public void enregistrer() {
