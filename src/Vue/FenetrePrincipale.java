@@ -69,43 +69,9 @@ public class FenetrePrincipale {
 		pane_livre_dispo.setBackground(new Color(247, 223, 179));
 		pane_livre_dispo.add(panel_label_livre_dispo, BorderLayout.NORTH);
 		
-		//JPanel pane_liste = new JPanel();
-		
 		JPanel pane_liste_livre = new JPanel();
 		pane_liste_livre.setLayout(new GridLayout(0,2));
 		
-		
-		
-		
-		
-		
-		String fichier_live = "./Livres.txt";
-		/*try(BufferedReader br = new BufferedReader(new FileReader(fichier_live))) {
-            String line_livre;
-            int compter_livre = 0;
-            while((line_livre = br.readLine()) != null) {
-                String res_livre[] = line_livre.split(":");
-                compter_livre += 1;
-                if(res_livre[1].equals("0")) {
-                    JPanel panel_label_livre = new JPanel();
-                    JLabel label_livre = new JLabel();
-                    panel_label_livre.add(label_livre);
-                    
-                    JPanel panel_btn_emprunter = new JPanel();
-                    JButton btn_emprunter = new JButton("Emprunter");
-                    panel_btn_emprunter.add(btn_emprunter);
-                    
-                    pane_liste_livre.add(panel_label_livre);
-                    pane_liste_livre.add(panel_btn_emprunter);
-                    pane_livre_dispo.add(pane_liste_livre, BorderLayout.CENTER);
-                    
-                    JList<Object> livre = new JList<Object>();
-                                        
-                }
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-        }*/
 		for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
             JPanel panel_label_livre = new JPanel();
             JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
@@ -120,7 +86,8 @@ public class FenetrePrincipale {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                     // TODO Auto-generated method stub
-                    System.out.println(Interface_donne_static.nomLivre.get(identifiant));
+                    new Livres().emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
+                    ;
                 }
             });
             

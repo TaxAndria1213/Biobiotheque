@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import Modele.Interface_donne_static;
+import Modele.Interface_global;
 
 /**
  * Livres
@@ -90,7 +91,8 @@ public class Livres implements Interface_donne_static{
             }
         }
         if (visibilite_livre_aempr == true) {
-            System.out.println("Vous avez emprenter " + nom_du_livre_aempr);
+            new Emprunt(nom_du_livre_aempr).enregistrer_une_emprunt();
+            System.out.println(Interface_global.utilisateur_actuel.getNom()+" a emprunté " + nom_du_livre_aempr);
         }
         else
         {

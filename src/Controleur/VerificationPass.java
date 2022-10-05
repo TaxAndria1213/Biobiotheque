@@ -53,7 +53,10 @@ public class VerificationPass implements Interface_global {
 						if(pass.equals(new String(mdp))) { //si le mot de passe est correcte, 
 							frame.dispose(); //fermer le fenêtre de connexion
 							//JOptionPane.showMessageDialog(null, "vous êtes dans l'application !", "connexion réussite", JOptionPane.INFORMATION_MESSAGE); //ouvrir le fenêtre principal
+							Interface_global.utilisateur_actuel.setNom(nom);
+							Interface_global.utilisateur_actuel.setMotDePass(new String(mdp));
 							new FenetrePrincipale();
+							System.out.println("L'utilisateur actuelle est : "+Interface_global.utilisateur_actuel.getNom());
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "Veuiller entrer un mot de passe valide !", "Erreur", JOptionPane.WARNING_MESSAGE);
