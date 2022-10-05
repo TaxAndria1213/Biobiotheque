@@ -1,7 +1,9 @@
 package Controleur;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 
 import javax.swing.JOptionPane;
 
@@ -38,7 +40,7 @@ public class Emprunt {
             String chemin = "./Emprunt.txt";
             FileOutputStream fos = new FileOutputStream(chemin, true);
             String nom = this.utilisateur;
-            String livre_emprunt = this.livre_emprunter;
+            String livre_emprunt = this.livre_emprunter+"\n";
             byte[] byteNom = nom.getBytes();
             fos.write(byteNom);
             byte[] byteMdp = livre_emprunt.getBytes();
@@ -50,4 +52,6 @@ public class Emprunt {
         }
         
     }
+    
+    
 }
