@@ -24,8 +24,6 @@ public class VerificationPass implements Interface_global {
 				for(int j = 0; j < res.length ; j++) {
 					ajouterDonneeClient(res[j]);
 				}
-				
-				ajouterDonneeClient(line);
 			}
 			System.out.println(Interface_global.user);
 			verifier(nom, mdp, frame); 
