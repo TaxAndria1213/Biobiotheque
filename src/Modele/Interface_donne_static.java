@@ -7,5 +7,5 @@ public interface Interface_donne_static {
     
     static File  fichier_livre = new File("Livres.txt");
     static ArrayList<String> nomLivre = new ArrayList<>();
-    public void Lecture(String livres);
+    public void Livres_array(String livres);
 }

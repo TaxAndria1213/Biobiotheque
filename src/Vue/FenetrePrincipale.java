@@ -2,8 +2,6 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +11,6 @@ import java.io.FileReader;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -38,7 +35,8 @@ public class FenetrePrincipale {
 	
 	
 	public FenetrePrincipale() {
-	    new Livres().livre_env_dans_array();
+		Livres liv = new Livres();
+	    liv.livre_env_dans_array();
 	    label_emprunt_utilisateur = new JLabel("Emprunt de l'utilisateur : ");
 	    
 	    JPanel panel_label_livre_dispo = new JPanel();
@@ -77,7 +75,6 @@ public class FenetrePrincipale {
 		pane_liste_livre.setLayout(new GridLayout(0,2));
 		
 		conteneur_panel_liste_livre.add(pane_liste_livre);
-		
 		for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
             JPanel panel_label_livre = new JPanel();
             JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
@@ -91,9 +88,10 @@ public class FenetrePrincipale {
             btn_emprunter.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
+					liv.emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
+                    System.out.println(Interface_donne_static.nomLivre.get(identifiant));
                     // TODO Auto-generated method stub
-                    new Livres().emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
-                    ;
+                    new Livres().emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));;
                 }
             });
             
