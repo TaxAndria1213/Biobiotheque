@@ -4,9 +4,4 @@ tafita:test1
 tafita:test
 tafita:test1
 tafita:test3
-null::test1
-null::test3
-bruno:test3
-bruno:test2
-bruno:test
-bruno:test1
+tafita:garabola
