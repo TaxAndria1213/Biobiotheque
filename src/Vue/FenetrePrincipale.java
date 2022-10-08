@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +15,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import Controleur.Emprunt;
 import Controleur.Livres;
 import Modele.Interface_donne_static;
+import Modele.Interface_global;
 
 	
 
@@ -62,13 +66,15 @@ public class FenetrePrincipale {
 		
 		JPanel pane_livre_dispo = new JPanel();
 		pane_livre_dispo.setLayout(new BorderLayout());
-		pane_livre_dispo.setBackground(new Color(247, 223, 179));
 		pane_livre_dispo.add(panel_label_livre_dispo, BorderLayout.NORTH);
 		
-		//JPanel pane_liste = new JPanel();
+		
+		JPanel conteneur_panel_liste_livre = new JPanel();
 		
 		JPanel pane_liste_livre = new JPanel();
 		pane_liste_livre.setLayout(new GridLayout(0,2));
+		
+		conteneur_panel_liste_livre.add(pane_liste_livre);
 		for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
             JPanel panel_label_livre = new JPanel();
             JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
@@ -84,20 +90,51 @@ public class FenetrePrincipale {
                 public void actionPerformed(ActionEvent arg0) {
 					liv.emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
                     System.out.println(Interface_donne_static.nomLivre.get(identifiant));
+                    // TODO Auto-generated method stub
+                    new Livres().emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));;
                 }
             });
             
             pane_liste_livre.add(panel_label_livre);
             pane_liste_livre.add(panel_btn_emprunter);
-            pane_livre_dispo.add(pane_liste_livre, BorderLayout.CENTER);
+            pane_livre_dispo.add(conteneur_panel_liste_livre, BorderLayout.CENTER);
         }  
 		
 		
 		JPanel pane_tout_les_emprunts = new JPanel();
-		pane_tout_les_emprunts.setBackground(new Color(185, 248, 175));
-		pane_tout_les_emprunts.add(label_tout_emprunts);
+		//pane_tout_les_emprunts.add(label_tout_emprunts);
+		pane_tout_les_emprunts.setLayout(new BorderLayout());
+		
+		JPanel pane_label_tout_les_emprunts = new JPanel();
+		pane_label_tout_les_emprunts.add(label_tout_emprunts);
+		
+		JPanel pane_conteneur_panel_tout_emprunt = new JPanel();
+		
+		JPanel pane_liste_tout_emprunts = new JPanel();
+		pane_liste_tout_emprunts.setLayout(new GridLayout(0, 2));
 		
 		
+		//ajout de la liste de tous les emprunt
+		tout_les_emprunts();
+		for(int i_emp = 0; i_emp < Interface_global.tout_emprunts.size(); i_emp++) {
+		    String result_emp[] = Interface_global.tout_emprunts.get(i_emp).split(":");
+		    JPanel pane_label_emprunteur = new JPanel();
+		    JLabel label_emprunteur = new JLabel(result_emp[0]+" : ");
+		    pane_label_emprunteur.add(label_emprunteur);
+		    JPanel pane_label_livre_emprunte = new JPanel();
+		    JLabel label_livre_emprunte = new JLabel(result_emp[1]);
+		    pane_label_livre_emprunte.add(label_livre_emprunte);
+		    
+		    pane_liste_tout_emprunts.add(pane_label_emprunteur);
+		    pane_liste_tout_emprunts.add(pane_label_livre_emprunte);
+		}
+		
+		
+		pane_conteneur_panel_tout_emprunt.add(pane_liste_tout_emprunts);
+		
+		
+		pane_tout_les_emprunts.add(pane_label_tout_les_emprunts, BorderLayout.NORTH);
+		pane_tout_les_emprunts.add(pane_conteneur_panel_tout_emprunt, BorderLayout.CENTER);
 		
 		conteneur.add(pane_emprunt_utilisateur);
 		conteneur.add(pane_livre_dispo);
@@ -113,4 +150,17 @@ public class FenetrePrincipale {
 		framePpl.setLocationRelativeTo(null);
 		framePpl.setVisible(true);
 	}
+	
+	public void tout_les_emprunts() {
+        String fichier_emprunt = "./Emprunt.txt";
+        try(BufferedReader br = new BufferedReader(new FileReader(fichier_emprunt))){
+            String line_emprunt;
+            while((line_emprunt = br.readLine()) != null) {
+                Interface_global.tout_emprunts.add(line_emprunt);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
+    }
 }
