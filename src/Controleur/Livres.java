@@ -27,21 +27,22 @@ public class Livres implements Interface_donne_static{
         }
         
     }
-    static void ajout_livre(String nom_du__livre_a_ajouter)
+    public void ajout_livre(String nom_du__livre_a_ajouter)
     {
         try {
             if (fichier_livre.createNewFile()) {
-                ecriture_dans_le_fichier(nom_du__livre_a_ajouter);
+                ecriture_dans_le_fichier(nom_du__livre_a_ajouter + ":1\n");
             } else {
-                ecriture_dans_le_fichier(nom_du__livre_a_ajouter);
+                ecriture_dans_le_fichier(nom_du__livre_a_ajouter + ":1\n");
             }
+            livre_env_dans_array();
         } catch (IOException e) {
             e.printStackTrace();
         }
     } 
     public void nouvelle_livre(String nouv_livre) {
-        livre_env_dans_array();
         Boolean test_donner_existant = false;
+        livre_env_dans_array();
         for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
             if (nouv_livre.equals(Interface_donne_static.nomLivre.get(i))) {
                 test_donner_existant = true;
@@ -55,7 +56,7 @@ public class Livres implements Interface_donne_static{
             ajout_livre(nouv_livre);
         }    
     }
-    public void Lecture(String livres){
+    public void Livres_array(String livres){
         Interface_donne_static.nomLivre.add(livres);
     }
 
@@ -65,8 +66,12 @@ public class Livres implements Interface_donne_static{
             String les_livres;
             while ((les_livres = lecture_fichier_livre.readLine()) != null) 
             {
-                Lecture(les_livres);
+                String livre_separer_status[] = les_livres.split(":");
+				for(int j = 0; j < livre_separer_status.length ; j++) {
+					Livres_array(livre_separer_status[j]);
+				}
             }
+            System.out.println(Interface_donne_static.nomLivre);
         } catch (IOException e) {
             System.out.println("erreur de selection");
             e.printStackTrace();
@@ -83,7 +88,6 @@ public class Livres implements Interface_donne_static{
     // }
 
     public void emprinter_livre(String nom_du_livre_aempr) {
-        livre_env_dans_array();
         Boolean visibilite_livre_aempr = false;
         for (int i = 0; i < nomLivre.size(); i++) {
             if (nom_du_livre_aempr.equals(nomLivre.get(i)))
