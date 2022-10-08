@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import Modele.Interface_donne_static;
 import Modele.Interface_global;
 
@@ -12,8 +14,13 @@ import Modele.Interface_global;
  * Livres
  */
 public class Livres implements Interface_donne_static{
+    
+    static String livre_non_dispo, status_emprunter_ok, status_emprunter_ko;
     int index_remover;
     public Livres(){
+        livre_non_dispo = "";
+        status_emprunter_ok = "OK";
+        status_emprunter_ko = "KO";
     }
     //Ajout nouveau liste dans le fichier avec Buffered
     static void ecriture_dans_le_fichier(String nom_liv ){
@@ -78,32 +85,26 @@ public class Livres implements Interface_donne_static{
         }
     }
 
-    // public String nom_du_livre_emprt(String nom_liv)
-    // {
-    //     if (nom_liv != null) {
-    //         return nom_liv;  
-    //     } else {
-    //        return null; 
-    //     }
-    // }
-
     public void emprinter_livre(String nom_du_livre_aempr) {
         Boolean visibilite_livre_aempr = false;
         for (int i = 0; i < nomLivre.size(); i++) {
             if (nom_du_livre_aempr.equals(nomLivre.get(i)))
             {
+                nomLivre.set(i+1, "0");
+                livre_non_dispo = nomLivre.get(i+1);
                 visibilite_livre_aempr = true;
-                index_remover = i;
-                break;
-                
+                break;    
             }
          }
         if (visibilite_livre_aempr == true) {
-            System.out.println("Vous avez emprenter " + nom_du_livre_aempr);
-            nomLivre.remove(index_remover);
-            System.out.println("status " +nomLivre);
-            new Emprunt(nom_du_livre_aempr).enregistrer_une_emprunt();
-            System.out.println(Interface_global.utilisateur_actuel.getNom()+" a emprunt� " + nom_du_livre_aempr);
+            if (livre_non_dispo.equals("0")) 
+            {
+                JOptionPane.showMessageDialog(null, "livre occuper !", "impossible de l'emprunter", JOptionPane.INFORMATION_MESSAGE);
+            }else
+            {    
+                new Emprunt(nom_du_livre_aempr).enregistrer_une_emprunt();
+                System.out.println(Interface_global.utilisateur_actuel.getNom() + " a emprunt� " + nom_du_livre_aempr);
+            }
         }
         else
         {
