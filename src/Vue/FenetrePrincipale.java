@@ -35,9 +35,13 @@ public class FenetrePrincipale {
 	
 	
 	public FenetrePrincipale() {
+	    new Livres().livre_env_dans_array();
+	    new Emprunt();
 		Livres liv = new Livres();
 	    liv.livre_env_dans_array();
 	    label_emprunt_utilisateur = new JLabel("Emprunt de l'utilisateur : ");
+	    JPanel panel_label_emprunt_utilisateur = new JPanel();
+	    panel_label_emprunt_utilisateur.add(label_emprunt_utilisateur);
 	    
 	    JPanel panel_label_livre_dispo = new JPanel();
 	    label_livre_dispo = new JLabel("Livre(s) disponible(s) : ");
@@ -45,7 +49,8 @@ public class FenetrePrincipale {
 	    
 	    label_tout_emprunts = new JLabel("Tout les emprunts : ");
 	    
-	    label_emprunt_utilisateur.setBackground(Color.WHITE);
+	    
+	    
 	    
 		framePpl = new JFrame();
 
@@ -61,8 +66,28 @@ public class FenetrePrincipale {
 		conteneur.setLayout(new GridLayout(1,3));
 		
 		JPanel pane_emprunt_utilisateur = new JPanel();
+		pane_emprunt_utilisateur.setLayout(new BorderLayout());
 		pane_emprunt_utilisateur.setBackground(new Color(187,213,251));
-		pane_emprunt_utilisateur.add(label_emprunt_utilisateur);
+		pane_emprunt_utilisateur.add(panel_label_emprunt_utilisateur, BorderLayout.NORTH);
+		
+		
+		
+		JPanel pane_conteneur_emprunt = new JPanel();
+		JPanel pane_liste_emprunt = new JPanel();
+		
+		pane_emprunt_utilisateur.add(pane_conteneur_emprunt, BorderLayout.CENTER);
+		
+		//Ajouter tout les emprunts de l'utilisateur dans la première colonne de la fenêtre principale.
+		pane_liste_emprunt.setLayout(new GridLayout(0,1));
+		
+		for(int nb_emprunt = 0; nb_emprunt < Interface_global.emprunt_de_l_utilisateur_actuel.size(); nb_emprunt++) {
+		    JLabel label_livre_emprunte = new JLabel();
+		    label_livre_emprunte.setText(Interface_global.emprunt_de_l_utilisateur_actuel.get(nb_emprunt));
+		    pane_liste_emprunt.add(label_livre_emprunte);
+		}
+		
+		
+		pane_conteneur_emprunt.add(pane_liste_emprunt);
 		
 		JPanel pane_livre_dispo = new JPanel();
 		pane_livre_dispo.setLayout(new BorderLayout());
@@ -160,6 +185,7 @@ public class FenetrePrincipale {
             }
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
         
     }

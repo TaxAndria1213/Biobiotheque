@@ -18,6 +18,10 @@ public class Emprunt {
         this.livre_emprunter = livre;
     }
     
+    public Emprunt() {
+        lire_emprunt();
+    }
+    
     public void enregistrer_une_emprunt() {
         try {
             String browse = "./Emprunt.txt";
@@ -51,6 +55,25 @@ public class Emprunt {
             System.err.println(e);
         }
         
+    }
+    
+    public void lire_emprunt() {
+        String fichier_emprunt = "./Emprunt.txt";
+        try(BufferedReader br = new BufferedReader(new FileReader(fichier_emprunt))) {
+            String line;
+            while((line=br.readLine()) != null) {
+                String resultat_utilisateur[] = line.split(":");
+                //System.out.println(Interface_global.utilisateur_actuel.getNom());
+                if(resultat_utilisateur[0].equals(Interface_global.utilisateur_actuel.getNom())) {
+                    Interface_global.emprunt_de_l_utilisateur_actuel.add(resultat_utilisateur[1]);
+                }
+            }
+            
+            System.out.println(Interface_global.emprunt_de_l_utilisateur_actuel);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
     }
     
     
