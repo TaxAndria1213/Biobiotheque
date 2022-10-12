@@ -25,7 +25,6 @@ public class VerificationPass implements Interface_global {
 					ajouterDonneeClient(res[j]);
 				}
 			}
-			System.out.println(Interface_global.user);
 			verifier(nom, mdp, frame); 
 		} catch (IOException e) {
 			System.out.println("An error occured !");
