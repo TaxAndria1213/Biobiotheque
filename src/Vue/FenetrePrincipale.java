@@ -2,8 +2,6 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +11,6 @@ import java.io.FileReader;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -40,6 +37,8 @@ public class FenetrePrincipale {
 	public FenetrePrincipale() {
 	    new Livres().livre_env_dans_array();
 	    new Emprunt();
+		Livres liv = new Livres();
+	    liv.livre_env_dans_array();
 	    label_emprunt_utilisateur = new JLabel("Emprunt de l'utilisateur : ");
 	    JPanel panel_label_emprunt_utilisateur = new JPanel();
 	    panel_label_emprunt_utilisateur.add(label_emprunt_utilisateur);
@@ -101,29 +100,29 @@ public class FenetrePrincipale {
 		pane_liste_livre.setLayout(new GridLayout(0,2));
 		
 		conteneur_panel_liste_livre.add(pane_liste_livre);
-		
 		for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
-            JPanel panel_label_livre = new JPanel();
-            JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
-            panel_label_livre.add(label_livre);
-            
-            JPanel panel_btn_emprunter = new JPanel();
-            JButton btn_emprunter = new JButton("Emprunter");
-            panel_btn_emprunter.add(btn_emprunter);
-            int identifiant = i;
-            
-            btn_emprunter.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent arg0) {
-                    // TODO Auto-generated method stub
-                    new Livres().emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
-                    ;
-                }
-            });
-            
-            pane_liste_livre.add(panel_label_livre);
-            pane_liste_livre.add(panel_btn_emprunter);
-            pane_livre_dispo.add(conteneur_panel_liste_livre, BorderLayout.CENTER);
+			if(i % 2 == 0){
+				JPanel panel_label_livre = new JPanel();
+				JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
+				panel_label_livre.add(label_livre);
+				
+				JPanel panel_btn_emprunter = new JPanel();
+				JButton btn_emprunter = new JButton("Emprunter");
+				panel_btn_emprunter.add(btn_emprunter);
+				int identifiant = i;
+				
+				btn_emprunter.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						liv.emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
+						System.out.println(Interface_donne_static.nomLivre.get(identifiant));
+					}
+				});
+				
+				pane_liste_livre.add(panel_label_livre);
+				pane_liste_livre.add(panel_btn_emprunter);
+				pane_livre_dispo.add(conteneur_panel_liste_livre, BorderLayout.CENTER);
+			}
         }  
 		
 		
