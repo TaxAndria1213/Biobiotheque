@@ -106,6 +106,7 @@ public class FenetrePrincipale {
 					//System.out.println(Interface_global.nomLivre.get(identifiant));
 				}
 			});
+
 			if(tester_livre_empainter == true){
 				System.out.println("tous les livre dispo sisa reo oh");
 			}
@@ -114,6 +115,7 @@ public class FenetrePrincipale {
 				pane_liste_livre.add(panel_btn_emprunter);
 				pane_livre_dispo.add(conteneur_panel_liste_livre, BorderLayout.CENTER);
 			}
+
 			tester_livre_empainter = false;
 				
         }  
