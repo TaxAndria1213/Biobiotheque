@@ -34,12 +34,7 @@ public class FenetrePrincipale {
 	
 	
 	public FenetrePrincipale() {
-<<<<<<< HEAD
 		Emprunt emp = new Emprunt();
-=======
-	    new Livres().livre_env_dans_array();
-	    new Emprunt();
->>>>>>> af342be0c834582f9f791719a7a1785bc62ef18e
 		Livres liv = new Livres();
 	    liv.livre_env_dans_array();
 		emp.lecture_emprunt();
@@ -83,7 +78,7 @@ public class FenetrePrincipale {
 		
 		pane_emprunt_utilisateur.add(pane_conteneur_emprunt, BorderLayout.CENTER);
 		
-		//Ajouter tout les emprunts de l'utilisateur dans la première colonne de la fenêtre principale.
+		//Ajouter tout les emprunts de l'utilisateur dans la premiï¿½re colonne de la fenï¿½tre principale.
 		pane_liste_emprunt.setLayout(new GridLayout(0,1));
 		
 		for(int nb_emprunt = 0; nb_emprunt < Interface_global.emprunt_de_l_utilisateur_actuel.size(); nb_emprunt++) {
@@ -110,13 +105,13 @@ public class FenetrePrincipale {
 		for (int i = 0; i < Interface_global.nomLivre.size(); i++) {
 			for (int j = 0; j < Interface_global.livres_dans_emprunte.size(); j++) {
 				if(Interface_global.nomLivre.get(i).equals(Interface_global.livres_dans_emprunte.get(j))){
-					System.out.println(Interface_global.nomLivre.get(i)+ "==" +Interface_global.livres_dans_emprunte.get(j));
-					System.out.println("status equals == " + Interface_global.nomLivre.get(i).equals(Interface_global.livres_dans_emprunte.get(j)));
+					// System.out.println(Interface_global.nomLivre.get(i)+ "==" +Interface_global.livres_dans_emprunte.get(j));
+					// System.out.println("status equals == " + Interface_global.nomLivre.get(i).equals(Interface_global.livres_dans_emprunte.get(j)));
 					tester_livre_empainter = true;
 					break;
 				}
 			}
-			System.out.println("status tester_livre_empainter == " + tester_livre_empainter);
+			//System.out.println("status tester_livre_empainter == " + tester_livre_empainter);
 			JPanel panel_label_livre = new JPanel();
 			JLabel label_livre = new JLabel(Interface_global.nomLivre.get(i));
 			panel_label_livre.add(label_livre);
@@ -207,11 +202,7 @@ public class FenetrePrincipale {
                 Interface_global.tout_emprunts.add(line_emprunt);
             }
         } catch (Exception e) {
-<<<<<<< HEAD
-=======
-            // TODO: handle exception
             e.printStackTrace();
->>>>>>> af342be0c834582f9f791719a7a1785bc62ef18e
         }
         
     }
