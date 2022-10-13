@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 import Controleur.Emprunt;
 import Controleur.Livres;
-import Modele.Interface_donne_static;
 import Modele.Interface_global;
 
 	
@@ -35,8 +34,12 @@ public class FenetrePrincipale {
 	
 	
 	public FenetrePrincipale() {
+		Emprunt emp = new Emprunt();
 		Livres liv = new Livres();
 	    liv.livre_env_dans_array();
+		emp.lecture_emprunt();
+		emp.recuperer_nom_livres_seulement();
+		emp.tester_livre_emprainter();
 	    label_emprunt_utilisateur = new JLabel("Emprunt de l'utilisateur : ");
 	    
 	    JPanel panel_label_livre_dispo = new JPanel();
@@ -75,29 +78,44 @@ public class FenetrePrincipale {
 		pane_liste_livre.setLayout(new GridLayout(0,2));
 		
 		conteneur_panel_liste_livre.add(pane_liste_livre);
-		for (int i = 0; i < Interface_donne_static.nomLivre.size(); i++) {
-			if(i % 2 == 0){
-				JPanel panel_label_livre = new JPanel();
-				JLabel label_livre = new JLabel(Interface_donne_static.nomLivre.get(i));
-				panel_label_livre.add(label_livre);
-				
-				JPanel panel_btn_emprunter = new JPanel();
-				JButton btn_emprunter = new JButton("Emprunter");
-				panel_btn_emprunter.add(btn_emprunter);
-				int identifiant = i;
-				
-				btn_emprunter.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						liv.emprinter_livre(Interface_donne_static.nomLivre.get(identifiant));
-						System.out.println(Interface_donne_static.nomLivre.get(identifiant));
-					}
-				});
-				
+		Boolean tester_livre_empainter = false;
+		for (int i = 0; i < Interface_global.nomLivre.size(); i++) {
+			for (int j = 0; j < Interface_global.livres_dans_emprunte.size(); j++) {
+				if(Interface_global.nomLivre.get(i).equals(Interface_global.livres_dans_emprunte.get(j))){
+					System.out.println(Interface_global.nomLivre.get(i)+ "==" +Interface_global.livres_dans_emprunte.get(j));
+					System.out.println("status equals == " + Interface_global.nomLivre.get(i).equals(Interface_global.livres_dans_emprunte.get(j)));
+					tester_livre_empainter = true;
+					break;
+				}
+			}
+			System.out.println("status tester_livre_empainter == " + tester_livre_empainter);
+			JPanel panel_label_livre = new JPanel();
+			JLabel label_livre = new JLabel(Interface_global.nomLivre.get(i));
+			panel_label_livre.add(label_livre);
+			
+			JPanel panel_btn_emprunter = new JPanel();
+			JButton btn_emprunter = new JButton("Emprunter");
+			panel_btn_emprunter.add(btn_emprunter);
+			int identifiant = i;
+			btn_emprunter.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					liv.emprinter_livre(Interface_global.nomLivre.get(identifiant));
+					
+					emp.tester_livre_emprainter();
+					//System.out.println(Interface_global.nomLivre.get(identifiant));
+				}
+			});
+			if(tester_livre_empainter == true){
+				System.out.println("tous les livre dispo sisa reo oh");
+			}
+			else{
 				pane_liste_livre.add(panel_label_livre);
 				pane_liste_livre.add(panel_btn_emprunter);
 				pane_livre_dispo.add(conteneur_panel_liste_livre, BorderLayout.CENTER);
 			}
+			tester_livre_empainter = false;
+				
         }  
 		
 		
@@ -159,7 +177,6 @@ public class FenetrePrincipale {
                 Interface_global.tout_emprunts.add(line_emprunt);
             }
         } catch (Exception e) {
-            // TODO: handle exception
         }
         
     }
