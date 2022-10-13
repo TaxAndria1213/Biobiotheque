@@ -4,4 +4,9 @@ tafita:test1
 tafita:test
 tafita:test1
 tafita:test3
+<<<<<<< HEAD
 bruno:garabola
+=======
+tafita:test
+tafita:garabola
+>>>>>>> af342be0c834582f9f791719a7a1785bc62ef18e

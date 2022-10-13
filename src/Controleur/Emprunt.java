@@ -19,7 +19,15 @@ public class Emprunt {
         this.utilisateur = Interface_global.utilisateur_actuel.getNom()+":";
         this.livre_emprunter = livre;
     }
+<<<<<<< HEAD
     //Enregietrement des emprainte dans le fichier "Emprunt.txt"
+=======
+    
+    public Emprunt() {
+        lire_emprunt();
+    }
+    
+>>>>>>> af342be0c834582f9f791719a7a1785bc62ef18e
     public void enregistrer_une_emprunt() {
         try {
             String browse = "./Emprunt.txt";
@@ -95,6 +103,25 @@ public class Emprunt {
             System.out.println(Interface_global.nomLivre);
         } catch (IOException e) {
             System.out.println("erreur de selection");
+            e.printStackTrace();
+        }
+    }
+    
+    public void lire_emprunt() {
+        String fichier_emprunt = "./Emprunt.txt";
+        try(BufferedReader br = new BufferedReader(new FileReader(fichier_emprunt))) {
+            String line;
+            while((line=br.readLine()) != null) {
+                String resultat_utilisateur[] = line.split(":");
+                //System.out.println(Interface_global.utilisateur_actuel.getNom());
+                if(resultat_utilisateur[0].equals(Interface_global.utilisateur_actuel.getNom())) {
+                    Interface_global.emprunt_de_l_utilisateur_actuel.add(resultat_utilisateur[1]);
+                }
+            }
+            
+            System.out.println(Interface_global.emprunt_de_l_utilisateur_actuel);
+        } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
         }
     }
