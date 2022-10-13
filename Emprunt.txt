@@ -4,5 +4,3 @@ tafita:test1
 tafita:test
 tafita:test1
 tafita:test3
-tafita:test
-tafita:garabola

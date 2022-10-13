@@ -44,14 +44,14 @@ public class VerificationPass implements Interface_global {
 			ArrayList<String> verifie = Interface_global.user;
 			System.out.println(nom);
 			
-			//vérification de la connexion
+			//vï¿½rification de la connexion
 			for(int i = 0; i < verifie.size(); i++) {
 				while(i%2 == 0) {
 					if(verifie.get(i).equals(nom)) {
 						pass = verifie.get(i+1);
 						if(pass.equals(new String(mdp))) { //si le mot de passe est correcte, 
-							frame.dispose(); //fermer le fenêtre de connexion
-							//JOptionPane.showMessageDialog(null, "vous êtes dans l'application !", "connexion réussite", JOptionPane.INFORMATION_MESSAGE); //ouvrir le fenêtre principal
+							frame.dispose(); //fermer le fenï¿½tre de connexion
+							//JOptionPane.showMessageDialog(null, "vous ï¿½tes dans l'application !", "connexion rï¿½ussite", JOptionPane.INFORMATION_MESSAGE); //ouvrir le fenï¿½tre principal
 							Interface_global.utilisateur_actuel.setNom(nom);
 							Interface_global.utilisateur_actuel.setMotDePass(new String(mdp));
 							new FenetrePrincipale();
@@ -74,5 +74,15 @@ public class VerificationPass implements Interface_global {
 	public void effacerChamps(JTextField champsNom, JPasswordField champsMdp) {
 		champsNom.setText("");
 		champsMdp.setText("");
+	}
+
+	@Override
+	public void Livres_empraint_array(String livres) {
+		
+	}
+
+	@Override
+	public void Livres_array(String livres) {
+		
 	}
 }
