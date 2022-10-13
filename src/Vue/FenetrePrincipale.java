@@ -1,7 +1,6 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +51,7 @@ public class FenetrePrincipale {
 	    
 	    
 	    
-		framePpl = new JFrame();
+		framePpl = new JFrame("Biobiothèque");
 
 		barre_de_menu.add(User_menu);
 		barre_de_menu.add(Livre_menu);
@@ -67,7 +66,6 @@ public class FenetrePrincipale {
 		
 		JPanel pane_emprunt_utilisateur = new JPanel();
 		pane_emprunt_utilisateur.setLayout(new BorderLayout());
-		pane_emprunt_utilisateur.setBackground(new Color(187,213,251));
 		pane_emprunt_utilisateur.add(panel_label_emprunt_utilisateur, BorderLayout.NORTH);
 		
 		
