@@ -16,6 +16,7 @@ public class Livres implements Interface_global{
     int index_remover;
     //Ajout nouveau liste dans le fichier avec FileOutputStream
     public void ecriture_dans_le_fichier(String nom_liv, File fichier_cible ){
+        
         try {
             FileOutputStream ecriture_donnee = new FileOutputStream(fichier_cible, true);
             byte[] nom_des_livres = nom_liv.getBytes();
@@ -76,7 +77,8 @@ public class Livres implements Interface_global{
         }
     }
 
-    public void emprinter_livre(String nom_du_livre_aempr) {  
+    public void emprinter_livre(String nom_du_livre_aempr) {
+        Interface_global.nomLivre.clear();
         new Emprunt(nom_du_livre_aempr).enregistrer_une_emprunt();
     }
     @Override
