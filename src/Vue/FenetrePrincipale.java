@@ -21,7 +21,7 @@ import Modele.Interface_global;
 	
 
 
-public class FenetrePrincipale {
+public class FenetrePrincipale extends JFrame {
 	private JFrame framePpl;
 	private JLabel label_emprunt_utilisateur;
 	private JLabel label_livre_dispo;
@@ -121,9 +121,12 @@ public class FenetrePrincipale {
 			btn_emprunter.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+			        Interface_global.emprunt_de_l_utilisateur_actuel.clear();
+
 					liv.emprinter_livre(Interface_global.nomLivre.get(identifiant));
 					
 					emp.tester_livre_emprainter();
+					actualiser();  
 					
 					
 					
@@ -200,7 +203,17 @@ public class FenetrePrincipale {
 		framePpl.setVisible(true);
 	}
 	
+	//Actualiser la fenetre principale
+	public void actualiser() {
+	    FenetrePrincipale nouveauFenetre = new FenetrePrincipale();
+	    nouveauFenetre.setVisible(false);
+	    framePpl.dispose();
+	    nouveauFenetre.setVisible(true);
+	}
+	
+	//récupérer
 	public void tout_les_emprunts() {
+	    Interface_global.tout_emprunts.clear();
         String fichier_emprunt = "./Emprunt.txt";
         try(BufferedReader br = new BufferedReader(new FileReader(fichier_emprunt))){
             String line_emprunt;
