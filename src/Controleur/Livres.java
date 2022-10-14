@@ -14,7 +14,7 @@ public class Livres implements Interface_global{
     
     static String livre_non_dispo, status_emprunter_ok, status_emprunter_ko;
     int index_remover;
-    //Ajout nouveau liste dans le fichier avec Buffered
+    //Ajout nouveau liste dans le fichier avec FileOutputStream
     public void ecriture_dans_le_fichier(String nom_liv, File fichier_cible ){
         try {
             FileOutputStream ecriture_donnee = new FileOutputStream(fichier_cible, true);
