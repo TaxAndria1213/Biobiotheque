@@ -4,5 +4,8 @@ tafita:test1
 tafita:test
 tafita:test1
 tafita:test3
-tafita:test
-tafita:garabola
+tafita:openclassroom
+tafita:apprendre java
+tafita:python pour les nulls
+tafita:Intélligence artificiel
+bruno:Livre électronique
